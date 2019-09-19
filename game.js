@@ -11,11 +11,144 @@ function testfunction() {
     console.log(`this works!`);
 }
 
-document.getElementById("fire").addEventListener("click", function() {
-    console.log(`pew pew`)
-    let laserSound = new Audio("pew.wav");
-    laserSound.play();
-});
+//SHIP CLASS DECLARATION
+class Ship {
+    constructor(health, laserClip = 0, laserDamage, shield = false, name, fightingType="fighter") {
+        this.health = health;
+        this.laserClip = laserClip;
+        this.laserDamage = laserDamage;
+        this.shield = shield;
+        this.name = name;
+        this.fightingType = fightingType;
+        }
+    attackEnemy() {
+        if (playerShip.laserClip > 0 && playerShip.laserClip <= 3) {
+
+        if (enemy.fightingType == "attacker") {
+            moveChoiceEnemyAttacker();
+        }
+        if (enemy.fightingType == "defender") {
+            moveChoiceEnemyDefender();
+        }
+
+        if (enemy.shield == false) {
+            enemy.health = enemy.health - this.laserDamage;
+
+            console.log("Enemy health is now " + enemy.health);
+            console.log(`pew pew`);
+
+            let laserSound = new Audio("pew.wav");
+            laserSound.play();
+            this.laserClip--;
+            addRound();
+
+            console.log("total rounds are " + totalRounds);
+
+            //Generate new ship after enemy is dead
+            if (enemy.health <= 0) {
+                generateNewEnemy();
+            }
+        }
+        if (enemy.shield == true) {
+            console.log("Enemy shield state is " + enemy.shield);
+            console.log("Enemy shield deflected shot");
+            makePewSound();
+            this.laserClip--;
+            console.log(`pew pew`);
+            let laserSound = new Audio("pew.wav");
+            laserSound.play();
+            addRound();
+        }
+        } else {
+            console.log("No ammo!");
+        }
+    }
+    attackPlayer() {
+        if (playerShip.shield == false) {
+            playerShip.health = playerShip.health - this.laserDamage;
+            console.log("Player health is now " + playerShip.health);
+        } else if (playerShip.shield = true) {
+            console.log("Player shield deflected shot");
+        }
+        this.laserClip--;
+    }
+    chargeLaser() {
+        if (enemy.fightingType == "attacker") {
+            enemy.moveChoiceEnemyAttacker();
+        }
+        if (enemy.fightingType == "defender") {
+            enemy.moveChoiceEnemyDefender();
+        }
+        if (this.laserClip == 0 || this.laserClip < 3) {
+            this.laserClip++;
+            console.log(this.laserClip);
+            addRound();
+
+            console.log("total rounds are " + totalRounds);
+        } else {
+            console.log("maximum clip");
+        }
+    }
+    activateShield() {
+        this.shield = true;
+        console.log(this.name + " shield is now " + this.shield);
+        addRound();
+        console.log("total rounds are " + totalRounds);
+    }
+}
+
+//DECLARE SHIPS
+let playerShip = new Ship (100, 0, 20, false, "Maverick")
+console.log(playerShip);
+generateNewEnemy();
+console.log(enemy);
+
+//FUNCTIONS
+function generateNewEnemy() {
+    alienName = ["Gorgonzola", "L33T Killa", "Jimmy"];
+    fightingType = ["attacker", "defender"];
+
+    let i = Math.floor(Math.random()*alienName.length);
+    let j = Math.floor(Math.random()*2);
+    
+    enemy = new Ship(100, 0, 10, false, name = alienName[i], fightingType[j]);
+    console.log("New enemy " + enemy.name);
+}
+
+function healthCheck() {
+
+}
+
+//Enemy Attacker
+function moveChoiceEnemyAttacker() {
+
+    let choice = Math.random();
+
+    if (playerShip.laserClip == 0 || enemy.laserClip == 0) {
+        enemy.chargeLaser();
+        return;
+    } 
+    if (enemy.laserClip > 0 && enemy.laserClip <= 3 && choice <= 0.66) {
+        enemy.attackPlayer();
+    } else {
+        enemy.activateShield();
+    }
+}
+//Enemy Defender
+function moveChoiceEnemyDefender() {
+
+    let choice = Math.random();
+
+    if (playerShip.laserClip == 0) {
+        enemy.chargeLaser();
+        return;
+    }
+    if (choice <= 0.66) {
+        enemy.activateShield();
+    } else {
+        enemy.attackPlayer();
+    }
+}
 
 //ROUND COUNTER
 let totalRounds = 0;
@@ -23,96 +156,31 @@ function addRound() {
     totalRounds++;
 }
 
-//SHIP CLASS DECLARATION
-class Ship {
-    constructor(health, laserClip = 0, laserDamage, shield = false) {
-        this.health = health;
-        this.laserClip = laserClip;
-        this.laserDamage = laserDamage;
-        this.shield = shield;
-        }
-}
+if (playerMove = true) {
+    function battle() {
 
-//ENEMY CLASS
-
-//Enemy Attacker
-class EnemyAttacker extends Ship {
-    moveChoice() {
-        if (playerShip.laserClip == 0) {
-            this.chargeLaser()
-        }
-        if (playerShip ) {
-
-        }
+        enemy.moveChoice();
     }
-}
-
-//Enemy Defender
-class EnemyDefender extends Ship {
-    moveChoice() {
-        if ()
-    }
-}
-
-//PLAYER DECLARATION
-let playerShip = new Ship (100, 0, 20, false)
-console.log(playerShip);
-let enemyShip1 = new EnemyAttacker(100, 0, 10, false);
-
-//DIFFICULTY LEVELS
-// let levelChoice = {};
-
-// function startLevel() {
-//     let enemyShip1 = new EnemyAttacker(100, 0, 10, false);
-// }
-// function startLevel2() {
-//     let enemyShip1 = new EnemyAttacker(100, 0, 10, false);
-// }
-// function startLevel3() {
-//     let enemyShip1 = new EnemyAttacker(100, 0, 10, false);
-// }
-
-//FUNCTIONS
-function battle() {
-    attack();
-}
-
-function attack(shipAttacker, shipDefender) {
-    if (shipDefender.shield == false) {
-            if (shipAttacker.laserClip = 0) {
-                console.log("Cannot fire weapon! Ammunition is not loaded!");
-            }
-            if (shipAttacker.laserClip >= 0 && shipAttacker.laserClip <= 3) {
-                console.log("Fire fire fire!")
-                if (shipDefender.shield == true) {
-                    shipDefender.health = shipDefender.health - shipAttacker.damage;
-                }
-            }
-        shipDefender.health = shipDefender.health - shipAttacker.damage;
-        console.log("Enemy is hit!")
-    } if (shipDefender.shield == true) {
-        console.log("Enemy shield has deflected our shot!")
-    }
-}
-
-function chargeLaser(ship1) {
-    ship1.laserClip++;
-    console.log(ship1.laserClip);
-}
-
-function activateShield(ship1) {
-    console.log(ship1.shield);
-    ship1.shield = true;
 }
 
 function roundReset() {
 
 }
 
+
+
 //USER INPUT
-document.getElementById('fire').addEventListener("click", attack(playerShip, enemyShip1));
-document.getElementById('charge').addEventListener("click", chargeLaser(playerShip));
-document.getElementById('shield').addEventListener("click", activateShield(playerShip));
+
+document.getElementById("fire").addEventListener("click",
+function() {
+    playerShip.attackEnemy()
+});
+document.getElementById("charge").addEventListener("click", function() {
+    playerShip.chargeLaser()
+});
+document.getElementById("shield").addEventListener("click", function() {
+    playerShip.activateShield()
+});
 
 
 //GAME END STAGE CONDITIONS

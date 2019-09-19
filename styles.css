@@ -2,16 +2,14 @@ body {
     background: black;
     color: lightgreen;
 }
-
-.levels {
+.gamestyle {
+    color: white;
     background: black;
     border-color: lightgreen;
 }
-
 .shield {
     display:none;
 }
-
 #playerShipNew {
     display: none;
 }
@@ -24,7 +22,18 @@ body {
 #playerShipDestroyed {
     display:none;
 }
-
+#enemyShipNew {
+    display: none;
+}
+#enemyShipMid {
+    display: none;
+}
+#enemyShipOld {
+    display: none;
+}
+#enemyShipDestroyed {
+    display: none;
+}
 #userConsole {
     border-color:lightgreen;
     border-width: 10px;
