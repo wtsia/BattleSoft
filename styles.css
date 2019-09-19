@@ -2,3 +2,41 @@ body {
     background: black;
     color: lightgreen;
 }
+
+.levels {
+    background: black;
+    border-color: lightgreen;
+}
+
+.shield {
+    display:none;
+}
+
+#playerShipNew {
+    display: none;
+}
+#playerShipMid {
+    display:none;
+}
+#playerShipOld {
+    display:none;
+}
+#playerShipDestroyed {
+    display:none;
+}
+
+#userConsole {
+    border-color:lightgreen;
+    border-width: 10px;
+}
+.enemyShip {
+    display: flex;
+    color: red;
+}
+
+.moveset {
+    display: inline-block;
+}
+
+
+

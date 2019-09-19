@@ -8,28 +8,122 @@
     <title>Galactic Starships</title>
 </head>
 <body>
-    <pre class="playerShip">
+    <audio id="backgroundMusic" controls="controls"><source src="8bitSpaceGroove.mp3" type="audio/mpeg">8 Bit Space Groove by HeatleyBros</audio>
+        
+    <button id="start">START</button>
+
+    <div class="levels" id="levelOne">Level 1</div>
+    <div class="levels" id="levelTwo">Level 2</div>
+    <div class="levels" id="levelThree">Level 3</div>
+
+<section class="shield">
+    <pre id="playerShield">
+        \
+         \
+          \
+           |
+           |
+           |
+           /
+          /
+         /
+    </pre>
+    <pre id="enemyShield">
+            /
+           /
+          /
+          |
+          |
+          |
+          \
+           \
+            \
+    </pre>
+</section>
+
+<section class="playerShip">
+    <pre id="playerShipNew">
             |=======>
                 |=======>
                  \   \
                 -----------------\
-               |                [ >
+               |        NEW     [ >
                 -----------------/
                  /   /
                 |=======>
             |=======>
-                </pre>
-    <pre class ="enemyShip">
+    </pre>
+    <pre id="playerShipMid">
+            |=======>
+                |=======>
+                 \   \
+                -----------------\
+               |     MID        [ >
+                -----------------/
+                 /   /
+                |=======>
+            |=======>
+    </pre>
+    <pre id="playerShipOld">
+            |=======>
+                |=======>
+                 \   \
+                -----------------\
+               |         OLD      [ >
+                -----------------/
+                 /   /
+                |=======>
+            |=======>
+    </pre>
+    <pre id="playerShipDestroyed">
+            |=======>
+                |=======>
+                 \   \
+                -----------------\
+               |        DEAD        [ >
+                -----------------/
+                 /   /
+                |=======>
+            |=======>
+    </pre>
+</section>
+
+<section class="enemyShip">
+    <pre id ="enemyShipNew">
          /-           ,,,,,,,
         /   \        /
         |    ========---------
         \   /        \
          \-           ```````
     </pre>
+    <pre id ="enemyShipMid">
+         /-           
+        /   \        /
+        |    ========---------
+        \   /        \
+         \-           ````
+    </pre>
+    <pre id ="enemyShipOld">
+         /-           
+            \        /
+        |    ========----
+        \   /        \
+         \-           
+    </pre>
+    <pre id ="enemyShipDestroyed">
+         /-           
+            \        /
+             ========
+            /        \
+         \-           
+    </pre>
+</section>
+    <div>USER CONSOLE</div>
+    <p id=userConsole>Enter console data here.</p>
     <section id="moveset">
-        <div id="fire">Fire</div>
-        <div id="charge">Charge Laser</div>
-        <div id="shield">Shield</div>
+        <button id="fire">Fire</button>
+        <button id="charge">Charge</button>
+        <button id="shield">Shield</button>
     </section>
 
     <script src="game.js"></script>
