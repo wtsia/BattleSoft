@@ -85,6 +85,9 @@ body {
     padding: 30px;
     border-width: 2px;
     margin: 5px;
+    height: 70px;
+    overflow-y: scroll;
+    width: 350px;
 }
 #startButton {
     display: block;
@@ -124,7 +127,7 @@ body {
         font-size: 5.5px;
     }
     body {
-        font-size: 7px;
+        font-size: 11px;
     }
 }
 

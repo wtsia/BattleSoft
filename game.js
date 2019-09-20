@@ -31,6 +31,9 @@ class Ship {
 
         if (enemy.shield == false) {
             enemy.health = enemy.health - this.laserDamage;
+            //display action
+            let action = document.getElementById("encounter");
+            action.innerHTML += `Player has attacked the enemy (health: ${enemy.health})` + `<br \>`;
             console.log("Player has attacked the enemy!")
             console.log("Enemy health is now " + enemy.health);
             //Play laser shot sound
@@ -62,10 +65,12 @@ class Ship {
         console.log("Enemy has attacked Player!");
         if (playerShip.shield == false) {
             playerShip.health = playerShip.health - this.laserDamage;
+            let action = document.getElementById("encounter");
+            action.innerHTML += `Player has been attacked (health: ${playerShip.health})` + `<br \>`;
             console.log("Player health is now " + playerShip.health);
-        } else 
-        //if (playerShip.shield = true) 
-        {
+        } else {
+            let action = document.getElementById("encounter");
+            action.innerHTML += `Player has deflected enemy shot!` + `<br \>`;
             console.log("Player shield deflected shot");
         }
         this.laserClip--;
@@ -256,6 +261,8 @@ function updateUserConsole() {
     document.getElementById(`displayEnemyClip`).innerHTML = enemy.laserClip;
     document.getElementById(`displayEnemyHealth`).innerHTML = enemy.health;
     document.getElementById(`displayEnemyShield`).innerHTML = enemy.shield;
+    var objDiv = document.getElementById("encounter");
+    objDiv.scrollTop = objDiv.scrollHeight;
 }
 
 //TURN COUNTER
