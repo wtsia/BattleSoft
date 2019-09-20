@@ -119,7 +119,7 @@ body {
     border-color:lightgreen;
     border-width: 10px;
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 640px) {
     header {
         font-size: 4px;
     }
