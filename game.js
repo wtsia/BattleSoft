@@ -9,7 +9,7 @@ backgroundMusic.volume = 0.2;
 
 //SHIP CLASS DECLARATION
 class Ship {
-    constructor(health, laserClip = 0, laserDamage, shield = false, name, fightingType="fighter") {
+    constructor(health, laserClip = 0, laserDamage, shield = `off`, name, fightingType="fighter") {
         this.health = health;
         this.laserClip = laserClip;
         this.laserDamage = laserDamage;
@@ -29,7 +29,7 @@ class Ship {
             updateUserConsole();
         }
 
-        if (enemy.shield == false) {
+        if (enemy.shield == `off`) {
             enemy.health = enemy.health - this.laserDamage;
             //display action
             let action = document.getElementById("encounter");
@@ -44,7 +44,7 @@ class Ship {
             checkWinorLoss();
             console.log("total rounds are " + totalRounds);
         }
-        if (enemy.shield == true) {
+        if (enemy.shield == `on`) {
             console.log("Enemy shield state is " + enemy.shield);
             console.log("Enemy shield deflected shot");
             this.laserClip--;
@@ -63,7 +63,7 @@ class Ship {
     }
     attackPlayer() {
         console.log("Enemy has attacked Player!");
-        if (playerShip.shield == false) {
+        if (playerShip.shield == `off`) {
             playerShip.health = playerShip.health - this.laserDamage;
             let action = document.getElementById("encounter");
             action.innerHTML += `Player has been attacked (health: ${playerShip.health})` + `<br \>`;
@@ -94,9 +94,9 @@ class Ship {
         }
     }
     activateShield() {
-        this.shield = true;
+        this.shield = `on`;
         let action = document.getElementById("encounter");
-        action.innerHTML += `${this.name} has activataed shield!` + `<br \>`;
+        action.innerHTML += `${this.name} has activated shield!` + `<br \>`;
         console.log(this.name + " shield is now " + this.shield);
         updateUserConsole();
     }
@@ -110,7 +110,7 @@ function generateNewEnemy() {
     let i = Math.floor(Math.random()*alienName.length);
     let j = Math.floor(Math.random()*2);
     
-    enemy = new Ship(100, 0, 10, false, name = alienName[i], fightingType[j]);
+    enemy = new Ship(100, 0, 10, `off`, name = alienName[i], fightingType[j]);
     let encounterNew = document.getElementById("encounter")
     encounterNew.innerHTML += `${enemy.name} has been encountered` + `<br \>`;
     console.log("New enemy " + enemy.name);
@@ -194,8 +194,8 @@ function moveChoiceEnemyDefender() {
 
 //Disable shields after each turn
 function disableShields() {
-    playerShip.shield = false;
-    enemy.shield = false;
+    playerShip.shield = `off`;
+    enemy.shield = `off`;
 }
 
 //Game Display
@@ -248,7 +248,7 @@ function() {
 });
 
 //DECLARE SHIPS
-let playerShip = new Ship (100, 0, 20, false, "Maverick")
+let playerShip = new Ship (100, 0, 20, `off`, "Player")
 let playerMaxHealth = playerShip.health;
 console.log(playerShip);
 generateNewEnemy();
