@@ -1,15 +1,57 @@
 body {
     background: black;
     color: lightgreen;
+    font-family: 'Press Start 2P', cursive;
+    flex: row;
+}
+.userInterface {
+    line-height: 25px;
 }
 .levelChoice {
+    background: black;
+    color: lightgreen;
+    border-color: lightgreen;
     display: none;
+    font-family: 'Press Start 2P', cursive;
+    margin: 20px;
+    padding: 10px;
+}
+.moveset {
+    background: black;
+    color: lightgreen;
+    border-color: lightgreen;
+    font-family: 'Press Start 2P', cursive;
+    padding: 10px;
+    margin: 20px;
+}
+#reset {
+    display: none;
+    background: black;
+    color: lightgreen;
+    border-color: lightgreen;
+    font-family: 'Press Start 2P', cursive;
+    padding: 10px;
+    margin: 20px;
+}
+.enemyShip {
+    color: red;
 }
 #game {
     display: none;
 }
 #endGame {
     display: none;
+}
+#winGame {
+    display :none;
+}
+#level {
+    display: none;
+}
+#encounter {
+    color: yellowgreen;
+    border: lightgreen;
+    padding: 30px;
 }
 .gamestyle {
     color: white;
@@ -20,9 +62,19 @@ body {
     display:none;
 }
 .start {
+    border-color: lightgreen;
+    background: black;
+    color: lightgreen;
+    font-family: 'Press Start 2P', cursive;
     display: inline-block;
+    padding: 10px;
+    margin: 20px;
 }
-
+#startButton {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
 #playerShipNew {
     display: inline-block;
 }
@@ -51,11 +103,6 @@ body {
     border-color:lightgreen;
     border-width: 10px;
 }
-.enemyShip {
-    display: flex;
-    color: red;
-}
-
 .moveset {
     display: inline-block;
 }

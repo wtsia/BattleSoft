@@ -7,10 +7,6 @@ document.getElementById("startButton").addEventListener("click", function() {
 backgroundMusic = document.getElementById("backgroundMusic");
 backgroundMusic.volume = 0.2;
 
-function testfunction() {
-    console.log(`this works!`);
-}
-
 //SHIP CLASS DECLARATION
 class Ship {
     constructor(health, laserClip = 0, laserDamage, shield = false, name, fightingType="fighter") {
@@ -33,15 +29,14 @@ class Ship {
 
         if (enemy.shield == false) {
             enemy.health = enemy.health - this.laserDamage;
-
             console.log("Player has attacked the enemy!")
             console.log("Enemy health is now " + enemy.health);
-
+            //Play laser shot sound
             let laserSound = new Audio("pew.wav");
             laserSound.play();
             this.laserClip--;
             updateUserConsole();
-
+            checkWinorLoss();
             console.log("total rounds are " + totalRounds);
         }
         if (enemy.shield == true) {
@@ -49,14 +44,15 @@ class Ship {
             console.log("Enemy shield deflected shot");
             this.laserClip--;
             updateUserConsole();
-
-            //Play laser shot sound
+            checkWinorLoss();
             let laserSound = new Audio("pew.wav");
             laserSound.play();
 
             disableShields();
         }
         } else {
+            let updateNoAmmo = document.getElementById("encounter")
+            updateNoAmmo.innerHTML += `No Ammo!` + `<br \>`;
             console.log("No ammo!");
         }
     }
@@ -99,18 +95,17 @@ class Ship {
 
 //FUNCTIONS
 function generateNewEnemy() {
-    alienName = ["Gorgonzola", "L33T Killa", "Jimmy"];
+    alienName = ["TrojanHorse", "Adware", "Spyware", "Rootkit"];
     fightingType = ["attacker", "defender"];
 
     let i = Math.floor(Math.random()*alienName.length);
     let j = Math.floor(Math.random()*2);
     
     enemy = new Ship(100, 0, 10, false, name = alienName[i], fightingType[j]);
+    let encounterNew = document.getElementById("encounter")
+    encounterNew.innerHTML += `${enemy.name} has been encountered` + `<br \>`;
     console.log("New enemy " + enemy.name);
-}
-
-function generateBoss() {
-    enemy = new Ship(200, 0, 10, false, name = "General Zarp", "attacker")
+    updateUserConsole();
 }
 
 function enemyHealthCheck() {
@@ -207,6 +202,7 @@ function changeDisplay(string) {
     }
     if (string == `levelChoice`) {
         document.getElementById(`game`).style.display = `inline-block`;
+        document.getElementById(`reset`).style.display = `inline-block`;
     }
 }
 //Start button to level choice
@@ -219,23 +215,26 @@ document.getElementById(`startButton`).addEventListener(`click`,
 document.getElementById(`levelOne`).addEventListener(`click`, 
 function() {
     let string = `levelChoice`;
+    iterations = 0;
+    console.log(`Chosen ` + iterations + ` Enemies`);
+    console.log("Difficulty is Easy");
     changeDisplay(string);
-    let difficulty = "Easy";
-    console.log("Difficulty is " + difficulty);
 });
 document.getElementById(`levelTwo`).addEventListener(`click`, 
 function() {
     let string = `levelChoice`;
+    iterations = 1;
+    console.log(`Chosen ` + iterations + ` Enemies`);
+    console.log("Difficulty is Normal");
     changeDisplay(string);
-    let difficulty = "Medium";
-    console.log("Difficulty is " + difficulty);
 });
 document.getElementById(`levelThree`).addEventListener(`click`, 
 function() {
     let string = `levelChoice`;
+    iterations = 2;
+    console.log(`Chosen ` + iterations + ` Enemies`);
+    console.log("Difficulty is Unbeatable");
     changeDisplay(string);
-    let difficulty = "Hard";
-    console.log("Difficulty is " + difficulty);
 });
 
 //DECLARE SHIPS
@@ -245,23 +244,6 @@ console.log(playerShip);
 generateNewEnemy();
 let enemyMaxHealth = enemy.health;
 console.log(enemy);
-
-// if (difficulty == "Easy") {
-//     if (enemy.health <= 0) {
-//         generateNewEnemy();
-//     }
-// }
-// if (difficulty == "Easy") {
-//     if (enemy.health <= 0) {
-//         generateNewEnemy();
-//     }
-// }
-// if (difficulty == "Easy") {
-//     if (enemy.health <= 0) {
-//         generateNewEnemy();
-//     }
-// }
-
 
 //DISPLAY UI
 function updateUserConsole() {
@@ -273,16 +255,44 @@ function updateUserConsole() {
     document.getElementById(`displayEnemyShield`).innerHTML = enemy.shield;
 }
 
-//ROUND COUNTER
+//TURN COUNTER
 let totalRounds = 0;
 function addRound() {
+    checkWinorLoss();
     totalRounds++;
     playerHealthCheck();
     enemyHealthCheck();
     disableShields();
 }
 
+//WIN STAGE
+function winStage() {
+    document.getElementById("game").style.display = `none`;
+    document.getElementById("winGame").style.display = `inline-block`;
+}
 
+function checkWinorLoss() {
+    if (playerShip.health <= 0) {
+        console.log("You Lose!")
+        changeDisplay("playerShip");
+        changeDisplay("enemyShip");
+        changeDisplay("userInterface");
+        document.getElementById("endGame").style.display = `flex`;
+        document.getElementById("reset").style.display = `flex`;
+    }
+    if (enemy.health <= 0) {
+        iterations--;
+        console.log(`iterations is ${iterations}`);
+        if (iterations < 0) {
+            winStage();
+            return;
+        }
+        let enemyLossUpdate = document.getElementById("encounter");
+        enemyLossUpdate.innerHTML += `${enemy.name} has been defeated` + `<br \>`;
+        generateNewEnemy();
+        console.log(`iterations remaining: ` + iterations);
+    }
+}
 
 //USER INPUT
 document.getElementById("fire").addEventListener("click",
@@ -291,6 +301,11 @@ function() {
 });
 
 document.getElementById("charge").addEventListener("click", function() {
+    if (playerShip.laserClip == 3) {
+        let updateMaxClip = document.getElementById("encounter")
+        updateMaxClip.innerHTML += `Max Clip!` + `<br \>`;
+        return;
+    }
     playerShip.chargeLaser()
     if (enemy.fightingType == "attacker") {
         moveChoiceEnemyAttacker();
@@ -310,24 +325,7 @@ document.getElementById("shield").addEventListener("click", function() {
     }
 });
 
-// document.getElementById("reset").addEventListener("click", 
-// function() {
-//     document.getElementById(`startButton`).addEventListener(`click`, 
-//     function() {
-//         let string = `start`;
-//         changeDisplay(string);
-//     });
-// });
-
-
-//GAME END STAGE CONDITIONS
-// if (playerShip.health == 0) {
-//     console.log("You Lose!")
-//     document.getElementById("game").style.display = `none`;
-//     document.getElementById("endGame").style.display = `none`;
-// }
-
-//BONUS
-//Make a function that prints text slowly instead of instantly
-
-// function: 
+document.getElementById("reset").addEventListener("click", 
+function() {
+    location.reload();
+})

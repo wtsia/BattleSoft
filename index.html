@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
     <title>BattleSoft</title>
 </head>
 <body>
@@ -18,90 +19,63 @@
 ▀▀███▀▀▀██▄  ▀███████████     ███         ███     ███       ▀▀███▀▀▀     ▀███████████ ███    ███ ▀▀███▀▀▀         ███     
   ███    ██▄   ███    ███     ███         ███     ███         ███    █▄           ███ ███    ███   ███            ███     
   ███    ███   ███    ███     ███         ███     ███▌    ▄   ███    ███    ▄█    ███ ███    ███   ███            ███     
-▄█████████▀    ███    █▀     ▄████▀      ▄████▀   █████▄▄██   ██████████  ▄████████▀   ▀██████▀    ███           ▄████▀   
-                                                  ▀                                                                       
-
+▄█████████▀    ███    █▀     ▄████▀      ▄████▀   █████▄▄██   ██████████  ▄████████▀   ▀██████▀    ███           ▄████▀                                                                                                                         
         </pre>
     </header>
         
     <p class="start">Malware has been detected! It is up to you to defend your Hard Drive from these malicious invaders!</p>
     <button class="start" id="startButton">START</button>
-    <button class="levelChoice" id="levelOne">Beginner</button>
+    <button class="levelChoice" id="levelOne">Easy</button>
     <button class="levelChoice" id="levelTwo">Normal</button>
-    <button class="levelChoice" id="levelThree">Oh Jesus</button>
+    <button class="levelChoice" id="levelThree">Unbeatable</button>
 
-    <p id="endGame">You Lose!</p>
-
+    <p id="endGame">Anti-Malware compromised. Hard Drive is corrupted!<br \></p>
+    <p id="winGame">You've removed all malware. You are safe!<br \></p>
 <section id="game">
-<section class="shield">
-    <pre id="playerShield">
-        \
-         \
-          \
-           |
-           |
-           |
-           /
-          /
-         /
-    </pre>
-    <pre id="enemyShield">
-            /
-           /
-          /
-          |
-          |
-          |
-          \
-           \
-            \
-    </pre>
-</section>
-
 <section class="playerShip">
     <pre id="playerShipNew">
             |=======>
                 |=======>
                  \   \
                 -----------------\
-               |        NEW     [ >
+               |                [ >
                 -----------------/
                  /   /
                 |=======>
             |=======>
     </pre>
     <pre id="playerShipMid">
-            |=======>
+              =====
                 |=======>
                  \   \
                 -----------------\
-               |     MID        [ >
+               |                [ >
                 -----------------/
                  /   /
                 |=======>
             |=======>
     </pre>
     <pre id="playerShipOld">
-            |=======>
+             ====
                 |=======>
                  \   \
-                -----------------\
-               |         OLD      [ >
+                --------   ------\
+               |                [ >
                 -----------------/
                  /   /
                 |=======>
-            |=======>
+            |======
     </pre>
     <pre id="playerShipDestroyed">
-            |=======>
-                |=======>
+            
+                |    ==>
                  \   \
-                -----------------\
-               |        DEAD        [ >
-                -----------------/
+                -------   -------\
+               |           
+                -----  ----   ---/
                  /   /
                 |=======>
-            |=======>
+            
     </pre>
 </section>
 
@@ -135,26 +109,33 @@
          \-           
     </pre>
 </section>
+<div id="encounter"></div><br \> 
+<section class="userInterface">
     <div>USER CONSOLE</div>
+    _______________________________________________<br \>
+    <br \>
     Player Laser Clip: <div id="displayPlayerClip">0</div>
     Player Health: <div id="displayPlayerHealth">100</div>
     Player Shield Status <div id="displayPlayerShield">false</div>
-    --------------------------------------------<br \>
+    _______________________________________________<br \>
+    <br \>
+
     Enemy Laser Clip: <div id="displayEnemyClip">0</div>
     Enemy Health: <div id="displayEnemyHealth">100</div>
     Enemy Shield Statis: <div id="displayEnemyShield">false</div>
-    
-    <section id="moveset">
-        <button id="fire">Fire</button>
-        <button id="charge">Charge</button>
-        <button id="shield">Shield</button>
+    <br \>
+    <section>
+        <button class="moveset" id="fire">Fire</button>
+        <button class="moveset" id="charge">Charge</button>
+        <button class="moveset" id="shield">Shield</button>
     </section>
-
-    <button id="reset">RESET</button>
-    
+    <br \>
 </section>
+</section>
+<button id="reset">RESET</button>
 
-<audio id="backgroundMusic" controls="controls"><source src="8bitSpaceGroove.mp3" type="audio/mpeg">8 Bit Space Groove by HeatleyBros</audio>
+<br \>
+<audio id="backgroundMusic" controls="controls" display="flex"><source src="8bitSpaceGroove.mp3" type="audio/mpeg">8 Bit Space Groove by HeatleyBros</audio>
     <script src="game.js"></script>
 </body>
 </html>
