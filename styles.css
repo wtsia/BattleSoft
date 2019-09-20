@@ -87,7 +87,6 @@ body {
     margin: 5px;
     height: 70px;
     overflow-y: scroll;
-    width: 350px;
 }
 #startButton {
     display: block;
@@ -128,6 +127,9 @@ body {
     }
     body {
         font-size: 11px;
+    }
+    #encounter {
+        width: 350px;
     }
 }
 
