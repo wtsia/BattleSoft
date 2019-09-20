@@ -82,6 +82,8 @@ class Ship {
             this.laserClip++;
             console.log(this.name + " has loaded ammo");
             console.log(this.name + " has " + this.laserClip + " shots");
+            let action = document.getElementById("encounter");
+            action.innerHTML += `${this.name} has loaded ammo` + `<br \>`;
             updateUserConsole();
             addRound();
             console.log("total moves are " + totalRounds);
