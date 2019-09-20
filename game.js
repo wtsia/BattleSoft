@@ -196,6 +196,7 @@ function changeDisplay(string) {
         element[i].style.display = `none`;
     }
     if (string == 'start') {
+        document.getElementById('chooseDiff').style.display = `inline-block`;
         document.getElementById(`levelOne`).style.display = `inline-block`;
         document.getElementById(`levelTwo`).style.display = `inline-block`;
         document.getElementById(`levelThree`).style.display = `inline-block`;

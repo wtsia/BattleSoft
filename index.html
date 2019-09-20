@@ -10,7 +10,7 @@
 </head>
 <body>
     <header>
-        <pre>
+        <pre class="centered">
             
 ▀█████████▄     ▄████████     ███         ███      ▄█          ▄████████    ▄████████  ▄██████▄     ▄████████     ███     
   ███    ███   ███    ███ ▀█████████▄ ▀█████████▄ ███         ███    ███   ███    ███ ███    ███   ███    ███ ▀█████████▄ 
@@ -23,8 +23,12 @@
         </pre>
     </header>
         
-    <p class="start">Malware has been detected! It is up to you to defend your Hard Drive from these malicious invaders!</p>
+    <p class="start">
+        Malware has been detected! It is up to you to defend your Hard Drive from these malicious invaders! <br \><br \>
+        malware: software that is specifically designed to disrupt, damage, or gain unauthorized access to a computer system.
+    </p>
     <button class="start" id="startButton">START</button>
+    <p class="levelChoice" id="chooseDiff">Choose your difficulty:</p>
     <button class="levelChoice" id="levelOne">Easy</button>
     <button class="levelChoice" id="levelTwo">Normal</button>
     <button class="levelChoice" id="levelThree">Unbeatable</button>
@@ -111,6 +115,11 @@
 </section>
 <div id="encounter"></div><br \> 
 <section class="userInterface">
+    <section>
+            <button class="moveset" id="fire">Fire</button>
+            <button class="moveset" id="charge">Charge</button>
+            <button class="moveset" id="shield">Shield</button>
+    </section>
     <div>USER CONSOLE</div>
     _______________________________________________<br \>
     <br \>
@@ -124,11 +133,6 @@
     Enemy Health: <div id="displayEnemyHealth">100</div>
     Enemy Shield Statis: <div id="displayEnemyShield">false</div>
     <br \>
-    <section>
-        <button class="moveset" id="fire">Fire</button>
-        <button class="moveset" id="charge">Charge</button>
-        <button class="moveset" id="shield">Shield</button>
-    </section>
     <br \>
 </section>
 </section>
