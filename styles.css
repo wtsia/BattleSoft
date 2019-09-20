@@ -24,6 +24,31 @@ body {
     padding: 10px;
     margin: 20px;
 }
+.moveset {
+    display: inline-block;
+}
+.centered {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+.gamestyle {
+    color: white;
+    background: black;
+    border-color: lightgreen;
+}
+.shield {
+    display:none;
+}
+.start {
+    border-color: lightgreen;
+    background: black;
+    color: lightgreen;
+    font-family: 'Press Start 2P', cursive;
+    display: inline-block;
+    padding: 10px;
+    margin: 20px;
+}
 #reset {
     display: none;
     background: black;
@@ -52,23 +77,6 @@ body {
     color: yellowgreen;
     border: lightgreen;
     padding: 30px;
-}
-.gamestyle {
-    color: white;
-    background: black;
-    border-color: lightgreen;
-}
-.shield {
-    display:none;
-}
-.start {
-    border-color: lightgreen;
-    background: black;
-    color: lightgreen;
-    font-family: 'Press Start 2P', cursive;
-    display: inline-block;
-    padding: 10px;
-    margin: 20px;
 }
 #startButton {
     display: block;
@@ -103,13 +111,6 @@ body {
     border-color:lightgreen;
     border-width: 10px;
 }
-.moveset {
-    display: inline-block;
-}
-.centered {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-}
+
 
 

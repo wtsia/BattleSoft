@@ -22,9 +22,11 @@ class Ship {
 
         if (enemy.fightingType == "attacker") {
             moveChoiceEnemyAttacker();
+            updateUserConsole();
         }
         if (enemy.fightingType == "defender") {
             moveChoiceEnemyDefender();
+            updateUserConsole();
         }
 
         if (enemy.shield == false) {
@@ -275,16 +277,14 @@ function winStage() {
 function checkWinorLoss() {
     if (playerShip.health <= 0) {
         console.log("You Lose!")
-        changeDisplay("playerShip");
-        changeDisplay("enemyShip");
-        changeDisplay("userInterface");
+        document.getElementById("game").style.display = `none`;
         document.getElementById("endGame").style.display = `flex`;
         document.getElementById("reset").style.display = `flex`;
     }
     if (enemy.health <= 0) {
         iterations--;
         console.log(`iterations is ${iterations}`);
-        if (iterations < 0) {
+        if (iterations < 0 && playerShip.health > 0) {
             winStage();
             return;
         }
