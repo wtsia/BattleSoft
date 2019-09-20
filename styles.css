@@ -2,6 +2,9 @@ body {
     background: black;
     color: lightgreen;
 }
+#game {
+    display: none;
+}
 .gamestyle {
     color: white;
     background: black;
@@ -10,8 +13,12 @@ body {
 .shield {
     display:none;
 }
+.start {
+    display: inline-block;
+}
+
 #playerShipNew {
-    display: none;
+    display: inline-block;
 }
 #playerShipMid {
     display:none;
@@ -23,7 +30,7 @@ body {
     display:none;
 }
 #enemyShipNew {
-    display: none;
+    display: inline-block;
 }
 #enemyShipMid {
     display: none;

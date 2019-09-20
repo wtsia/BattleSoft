@@ -1,5 +1,5 @@
 //GAME BEGIN
-document.getElementById("start").addEventListener("click", function() {
+document.getElementById("startButton").addEventListener("click", function() {
     console.log("start button works!");
 })
 
@@ -34,36 +34,34 @@ class Ship {
         if (enemy.shield == false) {
             enemy.health = enemy.health - this.laserDamage;
 
+            console.log("Player has attacked the enemy!")
             console.log("Enemy health is now " + enemy.health);
-            console.log(`pew pew`);
 
             let laserSound = new Audio("pew.wav");
             laserSound.play();
             this.laserClip--;
-            addRound();
+            updateUserConsole();
 
             console.log("total rounds are " + totalRounds);
-
-            //Generate new ship after enemy is dead
-            if (enemy.health <= 0) {
-                generateNewEnemy();
-            }
         }
         if (enemy.shield == true) {
             console.log("Enemy shield state is " + enemy.shield);
             console.log("Enemy shield deflected shot");
-            makePewSound();
             this.laserClip--;
-            console.log(`pew pew`);
+            updateUserConsole();
+
+            //Play laser shot sound
             let laserSound = new Audio("pew.wav");
             laserSound.play();
-            addRound();
+
+            disableShields();
         }
         } else {
             console.log("No ammo!");
         }
     }
     attackPlayer() {
+        console.log("Enemy has attacked Player!");
         if (playerShip.shield == false) {
             playerShip.health = playerShip.health - this.laserDamage;
             console.log("Player health is now " + playerShip.health);
@@ -71,20 +69,17 @@ class Ship {
             console.log("Player shield deflected shot");
         }
         this.laserClip--;
+        updateUserConsole();
+        addRound();
     }
     chargeLaser() {
-        if (enemy.fightingType == "attacker") {
-            enemy.moveChoiceEnemyAttacker();
-        }
-        if (enemy.fightingType == "defender") {
-            enemy.moveChoiceEnemyDefender();
-        }
         if (this.laserClip == 0 || this.laserClip < 3) {
             this.laserClip++;
-            console.log(this.laserClip);
+            console.log(this.name + " has loaded ammo");
+            console.log(this.name + " has " + this.laserClip + " shots");
             addRound();
-
-            console.log("total rounds are " + totalRounds);
+            console.log("total moves are " + totalRounds);
+            updateUserConsole();
         } else {
             console.log("maximum clip");
         }
@@ -93,14 +88,17 @@ class Ship {
         this.shield = true;
         console.log(this.name + " shield is now " + this.shield);
         addRound();
-        console.log("total rounds are " + totalRounds);
+        console.log("total moves are " + totalRounds);
+        updateUserConsole();
     }
 }
 
 //DECLARE SHIPS
 let playerShip = new Ship (100, 0, 20, false, "Maverick")
+let playerMaxHealth = playerShip.health;
 console.log(playerShip);
 generateNewEnemy();
+let enemyMaxHealth = enemy.health;
 console.log(enemy);
 
 //FUNCTIONS
@@ -115,8 +113,44 @@ function generateNewEnemy() {
     console.log("New enemy " + enemy.name);
 }
 
-function healthCheck() {
+function generateBoss() {
+    enemy = new Ship(200, 0, 10, false, name = "General Zarp", "attacker")
+}
 
+function enemyHealthCheck() {
+    if (enemy.health > 0.66 && enemy.health <= enemyMaxHealth) {
+        document.getElementById("enemyShipNew").style.display = "inline-block";
+    }
+    if (enemy.health > 0.33 && enemy.health <= 0.66*enemyMaxHealth) {
+        document.getElementById("enemyShipNew").style.display = "none";
+        document.getElementById("enemyShipMid").style.display = "inline-block";
+    }
+    if (enemy.health > 0 && enemy.health <= 0.33*enemyMaxHealth) {
+        document.getElementById("enemyShipMid").style.display = "none";
+        document.getElementById("enemyShipOld").style.display = "inline-block";
+    }
+    if (enemy.health <= 0) {
+        document.getElementById("enemyShipOld").style.display = "none";
+        document.getElementById("enemyShipDestroyed").style.display = "inline-block";
+    }
+}
+
+function playerHealthCheck() {
+    if (playerShip.health > 0.66 && playerShip.health <= playerMaxHealth) {
+        document.getElementById("playerShipNew").style.display = "inline-block";
+    }
+    if (playerShip.health > 0.33 && playerShip.health <= 0.66*playerMaxHealth) {
+        document.getElementById("playerShipNew").style.display = "none";
+        document.getElementById("playerShipMid").style.display = "inline-block";
+    }
+    if (playerShip.health > 0 && playerShip.health <= 0.33*playerMaxHealth) {
+        document.getElementById("playerShipMid").style.display = "none";
+        document.getElementById("playerShipOld").style.display = "inline-block";
+    }
+    if (playerShip.health <= 0) {
+        document.getElementById("playerShipOld").style.display = "none";
+        document.getElementById("playerShipDestroyed").style.display = "inline-block";
+    }
 }
 
 //Enemy Attacker
@@ -124,47 +158,95 @@ function moveChoiceEnemyAttacker() {
 
     let choice = Math.random();
 
-    if (playerShip.laserClip == 0 || enemy.laserClip == 0) {
+    if (playerShip.laserClip == 0 && enemy.laserClip < 3) {
         enemy.chargeLaser();
         return;
     } 
-    if (enemy.laserClip > 0 && enemy.laserClip <= 3 && choice <= 0.66) {
+    if (enemy.laserClip == 0) {
+        enemy.chargeLaser();
+    } else if (choice <= 0.66) {
+        if (enemy.laserClip == 0) {
+            enemy.chargeLaser();
+            return;
+        } else {
         enemy.attackPlayer();
+        }
     } else {
         enemy.activateShield();
     }
 }
+
 //Enemy Defender
 function moveChoiceEnemyDefender() {
-
     let choice = Math.random();
-
     if (playerShip.laserClip == 0) {
         enemy.chargeLaser();
         return;
     }
-    if (choice <= 0.66) {
+    if (enemy.laserClip == 0) {
+        enemy.chargeLaser();
+    } else if (choice <= 0.66) {
         enemy.activateShield();
     } else {
         enemy.attackPlayer();
     }
+}
+
+//Disable shields after each turn
+function disableShields() {
+    playerShip.shield = false;
+    enemy.shield = false;
+}
+
+//Game Display
+function changeDisplay(string) {
+    let element = document.getElementsByClassName(string)
+    for(i=0; i<element.length; i++) {
+        element[i].style.display = `none`;
+    }
+    document.getElementById(`game`).style.display = `inline-block`;
+}
+//Start button to level choice
+document.getElementById(`startButton`).addEventListener(`click`, 
+    function() {
+        let string = `start`;
+        changeDisplay(string);
+});
+//level choice to game
+document.getElementById(`levelOne`).addEventListener(`click`, 
+function() {
+    let string = `levelChoice`;
+    changeDisplay(string);
+});
+document.getElementById(`levelTwo`).addEventListener(`click`, 
+function() {
+    let string = `levelChoice`;
+    changeDisplay(string);
+});
+document.getElementById(`levelThree`).addEventListener(`click`, 
+function() {
+    let string = `levelChoice`;
+    changeDisplay(string);
+});
+
+
+//DISPLAY UI
+function updateUserConsole() {
+    document.getElementById(`displayPlayerClip`).innerHTML = playerShip.laserClip;
+    document.getElementById(`displayPlayerHealth`).innerHTML = playerShip.health;
+    document.getElementById(`displayPlayerShield`).innerHTML = playerShip.shield;
+    document.getElementById(`displayEnemyClip`).innerHTML = enemy.laserClip;
+    document.getElementById(`displayEnemyHealth`).innerHTML = enemy.health;
+    document.getElementById(`displayEnemyShield`).innerHTML = enemy.shield;
 }
 
 //ROUND COUNTER
 let totalRounds = 0;
 function addRound() {
     totalRounds++;
-}
-
-if (playerMove = true) {
-    function battle() {
-
-        enemy.moveChoice();
-    }
-}
-
-function roundReset() {
-
+    playerHealthCheck();
+    enemyHealthCheck();
+    disableShields();
 }
 
 
@@ -173,13 +255,25 @@ function roundReset() {
 
 document.getElementById("fire").addEventListener("click",
 function() {
-    playerShip.attackEnemy()
+    playerShip.attackEnemy();
 });
 document.getElementById("charge").addEventListener("click", function() {
     playerShip.chargeLaser()
+    if (enemy.fightingType == "attacker") {
+        moveChoiceEnemyAttacker();
+    }
+    if (enemy.fightingType == "defender") {
+        moveChoiceEnemyDefender();
+    }
 });
 document.getElementById("shield").addEventListener("click", function() {
-    playerShip.activateShield()
+    playerShip.activateShield();
+    if (enemy.fightingType == "attacker") {
+        moveChoiceEnemyAttacker();
+    }
+    if (enemy.fightingType == "defender") {
+        moveChoiceEnemyDefender();
+    }
 });
 
 

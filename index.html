@@ -5,17 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="styles.css">
-    <title>Galactic Starships</title>
+    <title>BattleSoft</title>
 </head>
 <body>
-    <audio id="backgroundMusic" controls="controls"><source src="8bitSpaceGroove.mp3" type="audio/mpeg">8 Bit Space Groove by HeatleyBros</audio>
+    <header>
+        <pre>
+            
+▀█████████▄     ▄████████     ███         ███      ▄█          ▄████████    ▄████████  ▄██████▄     ▄████████     ███     
+  ███    ███   ███    ███ ▀█████████▄ ▀█████████▄ ███         ███    ███   ███    ███ ███    ███   ███    ███ ▀█████████▄ 
+  ███    ███   ███    ███    ▀███▀▀██    ▀███▀▀██ ███         ███    █▀    ███    █▀  ███    ███   ███    █▀     ▀███▀▀██ 
+ ▄███▄▄▄██▀    ███    ███     ███   ▀     ███   ▀ ███        ▄███▄▄▄       ███        ███    ███  ▄███▄▄▄         ███   ▀ 
+▀▀███▀▀▀██▄  ▀███████████     ███         ███     ███       ▀▀███▀▀▀     ▀███████████ ███    ███ ▀▀███▀▀▀         ███     
+  ███    ██▄   ███    ███     ███         ███     ███         ███    █▄           ███ ███    ███   ███            ███     
+  ███    ███   ███    ███     ███         ███     ███▌    ▄   ███    ███    ▄█    ███ ███    ███   ███            ███     
+▄█████████▀    ███    █▀     ▄████▀      ▄████▀   █████▄▄██   ██████████  ▄████████▀   ▀██████▀    ███           ▄████▀   
+                                                  ▀                                                                       
+
+        </pre>
+    </header>
         
-    <button class="gamestyle" id="start">START</button>
+    <p class="start">Malware has been detected! It is up to you to defend your Hard Drive from these malicious invaders!</p>
+    <button class="start" id="startButton">START</button>
 
-    <div class="gamestyle" id="levelOne">Level 1</div>
-    <div class="gamestyle" id="levelTwo">Level 2</div>
-    <div class="gamestyle" id="levelThree">Level 3</div>
-
+<section id="game">
+    <div class="levelChoice" id="levelOne">Level 1</div>
+    <div class="levelChoice" id="levelTwo">Level 2</div>
+    <div class="levelChoice" id="levelThree">Level 3</div>
 <section class="shield">
     <pre id="playerShield">
         \
@@ -119,15 +134,20 @@
     </pre>
 </section>
     <div>USER CONSOLE</div>
-    <p id=userConsole>
-        
-    </p>
+    Player Laser Clip: <div id="displayPlayerClip">0</div>
+    Player Health: <div id="displayPlayerHealth">100</div>
+    Player Shield Status <div id="displayPlayerShield">false</div>
+    Enemy Laser Clip: <div id="displayEnemyClip">0</div>
+    Enemy Health: <div id="displayEnemyHealth">100</div>
+    Enemy Shield Statis: <div id="displayEnemyShield">false</div>
+    
     <section id="moveset">
         <button id="fire">Fire</button>
         <button id="charge">Charge</button>
         <button id="shield">Shield</button>
     </section>
-
+</section>
+<audio id="backgroundMusic" controls="controls"><source src="8bitSpaceGroove.mp3" type="audio/mpeg">8 Bit Space Groove by HeatleyBros</audio>
     <script src="game.js"></script>
 </body>
 </html>
