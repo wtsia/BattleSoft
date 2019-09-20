@@ -121,10 +121,10 @@ body {
 }
 @media screen and (max-width: 760px) {
     header {
-        font-size: 4px;
+        font-size: 5.5px;
     }
     body {
-        font-size: 8px;
+        font-size: 7px;
     }
 }
 
