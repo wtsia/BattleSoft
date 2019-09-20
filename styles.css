@@ -2,7 +2,13 @@ body {
     background: black;
     color: lightgreen;
 }
+.levelChoice {
+    display: none;
+}
 #game {
+    display: none;
+}
+#endGame {
     display: none;
 }
 .gamestyle {

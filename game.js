@@ -65,7 +65,9 @@ class Ship {
         if (playerShip.shield == false) {
             playerShip.health = playerShip.health - this.laserDamage;
             console.log("Player health is now " + playerShip.health);
-        } else if (playerShip.shield = true) {
+        } else 
+        //if (playerShip.shield = true) 
+        {
             console.log("Player shield deflected shot");
         }
         this.laserClip--;
@@ -77,29 +79,23 @@ class Ship {
             this.laserClip++;
             console.log(this.name + " has loaded ammo");
             console.log(this.name + " has " + this.laserClip + " shots");
+            updateUserConsole();
             addRound();
             console.log("total moves are " + totalRounds);
-            updateUserConsole();
         } else {
+            if (this.fightingType == "attacker" || this.fightingType == "defender") {
+                this.attackPlayer();
+            } else {
             console.log("maximum clip");
+            }
         }
     }
     activateShield() {
         this.shield = true;
         console.log(this.name + " shield is now " + this.shield);
-        addRound();
-        console.log("total moves are " + totalRounds);
         updateUserConsole();
     }
 }
-
-//DECLARE SHIPS
-let playerShip = new Ship (100, 0, 20, false, "Maverick")
-let playerMaxHealth = playerShip.health;
-console.log(playerShip);
-generateNewEnemy();
-let enemyMaxHealth = enemy.health;
-console.log(enemy);
 
 //FUNCTIONS
 function generateNewEnemy() {
@@ -155,9 +151,7 @@ function playerHealthCheck() {
 
 //Enemy Attacker
 function moveChoiceEnemyAttacker() {
-
     let choice = Math.random();
-
     if (playerShip.laserClip == 0 && enemy.laserClip < 3) {
         enemy.chargeLaser();
         return;
@@ -170,6 +164,8 @@ function moveChoiceEnemyAttacker() {
             return;
         } else {
         enemy.attackPlayer();
+        addRound();
+        console.log("total moves are " + totalRounds);
         }
     } else {
         enemy.activateShield();
@@ -204,7 +200,14 @@ function changeDisplay(string) {
     for(i=0; i<element.length; i++) {
         element[i].style.display = `none`;
     }
-    document.getElementById(`game`).style.display = `inline-block`;
+    if (string == 'start') {
+        document.getElementById(`levelOne`).style.display = `inline-block`;
+        document.getElementById(`levelTwo`).style.display = `inline-block`;
+        document.getElementById(`levelThree`).style.display = `inline-block`;
+    }
+    if (string == `levelChoice`) {
+        document.getElementById(`game`).style.display = `inline-block`;
+    }
 }
 //Start button to level choice
 document.getElementById(`startButton`).addEventListener(`click`, 
@@ -217,17 +220,47 @@ document.getElementById(`levelOne`).addEventListener(`click`,
 function() {
     let string = `levelChoice`;
     changeDisplay(string);
+    let difficulty = "Easy";
+    console.log("Difficulty is " + difficulty);
 });
 document.getElementById(`levelTwo`).addEventListener(`click`, 
 function() {
     let string = `levelChoice`;
     changeDisplay(string);
+    let difficulty = "Medium";
+    console.log("Difficulty is " + difficulty);
 });
 document.getElementById(`levelThree`).addEventListener(`click`, 
 function() {
     let string = `levelChoice`;
     changeDisplay(string);
+    let difficulty = "Hard";
+    console.log("Difficulty is " + difficulty);
 });
+
+//DECLARE SHIPS
+let playerShip = new Ship (100, 0, 20, false, "Maverick")
+let playerMaxHealth = playerShip.health;
+console.log(playerShip);
+generateNewEnemy();
+let enemyMaxHealth = enemy.health;
+console.log(enemy);
+
+// if (difficulty == "Easy") {
+//     if (enemy.health <= 0) {
+//         generateNewEnemy();
+//     }
+// }
+// if (difficulty == "Easy") {
+//     if (enemy.health <= 0) {
+//         generateNewEnemy();
+//     }
+// }
+// if (difficulty == "Easy") {
+//     if (enemy.health <= 0) {
+//         generateNewEnemy();
+//     }
+// }
 
 
 //DISPLAY UI
@@ -252,11 +285,11 @@ function addRound() {
 
 
 //USER INPUT
-
 document.getElementById("fire").addEventListener("click",
 function() {
     playerShip.attackEnemy();
 });
+
 document.getElementById("charge").addEventListener("click", function() {
     playerShip.chargeLaser()
     if (enemy.fightingType == "attacker") {
@@ -266,6 +299,7 @@ document.getElementById("charge").addEventListener("click", function() {
         moveChoiceEnemyDefender();
     }
 });
+
 document.getElementById("shield").addEventListener("click", function() {
     playerShip.activateShield();
     if (enemy.fightingType == "attacker") {
@@ -276,12 +310,22 @@ document.getElementById("shield").addEventListener("click", function() {
     }
 });
 
+// document.getElementById("reset").addEventListener("click", 
+// function() {
+//     document.getElementById(`startButton`).addEventListener(`click`, 
+//     function() {
+//         let string = `start`;
+//         changeDisplay(string);
+//     });
+// });
+
 
 //GAME END STAGE CONDITIONS
-
-function gameEnd() {
-
-}
+// if (playerShip.health == 0) {
+//     console.log("You Lose!")
+//     document.getElementById("game").style.display = `none`;
+//     document.getElementById("endGame").style.display = `none`;
+// }
 
 //BONUS
 //Make a function that prints text slowly instead of instantly

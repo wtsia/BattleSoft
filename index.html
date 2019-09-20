@@ -26,11 +26,13 @@
         
     <p class="start">Malware has been detected! It is up to you to defend your Hard Drive from these malicious invaders!</p>
     <button class="start" id="startButton">START</button>
+    <button class="levelChoice" id="levelOne">Beginner</button>
+    <button class="levelChoice" id="levelTwo">Normal</button>
+    <button class="levelChoice" id="levelThree">Oh Jesus</button>
+
+    <p id="endGame">You Lose!</p>
 
 <section id="game">
-    <div class="levelChoice" id="levelOne">Level 1</div>
-    <div class="levelChoice" id="levelTwo">Level 2</div>
-    <div class="levelChoice" id="levelThree">Level 3</div>
 <section class="shield">
     <pre id="playerShield">
         \
@@ -137,6 +139,7 @@
     Player Laser Clip: <div id="displayPlayerClip">0</div>
     Player Health: <div id="displayPlayerHealth">100</div>
     Player Shield Status <div id="displayPlayerShield">false</div>
+    --------------------------------------------<br \>
     Enemy Laser Clip: <div id="displayEnemyClip">0</div>
     Enemy Health: <div id="displayEnemyHealth">100</div>
     Enemy Shield Statis: <div id="displayEnemyShield">false</div>
@@ -146,7 +149,11 @@
         <button id="charge">Charge</button>
         <button id="shield">Shield</button>
     </section>
+
+    <button id="reset">RESET</button>
+    
 </section>
+
 <audio id="backgroundMusic" controls="controls"><source src="8bitSpaceGroove.mp3" type="audio/mpeg">8 Bit Space Groove by HeatleyBros</audio>
     <script src="game.js"></script>
 </body>
