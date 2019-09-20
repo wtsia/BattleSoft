@@ -95,6 +95,8 @@ class Ship {
     }
     activateShield() {
         this.shield = true;
+        let action = document.getElementById("encounter");
+        action.innerHTML += `${this.name} has activataed shield!` + `<br \>`;
         console.log(this.name + " shield is now " + this.shield);
         updateUserConsole();
     }
