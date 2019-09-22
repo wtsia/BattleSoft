@@ -9,9 +9,8 @@
     <title>BattleSoft</title>
 </head>
 <body>
-    <header>
-        <pre>
-            
+    <header class="banner">
+        <pre id="battleSoft">
 ▀█████████▄     ▄████████     ███         ███      ▄█          ▄████████    ▄████████  ▄██████▄     ▄████████     ███     
   ███    ███   ███    ███ ▀█████████▄ ▀█████████▄ ███         ███    ███   ███    ███ ███    ███   ███    ███ ▀█████████▄ 
   ███    ███   ███    ███    ▀███▀▀██    ▀███▀▀██ ███         ███    █▀    ███    █▀  ███    ███   ███    █▀     ▀███▀▀██ 
@@ -19,7 +18,7 @@
 ▀▀███▀▀▀██▄  ▀███████████     ███         ███     ███       ▀▀███▀▀▀     ▀███████████ ███    ███ ▀▀███▀▀▀         ███     
   ███    ██▄   ███    ███     ███         ███     ███         ███    █▄           ███ ███    ███   ███            ███     
   ███    ███   ███    ███     ███         ███     ███▌    ▄   ███    ███    ▄█    ███ ███    ███   ███            ███     
-▄█████████▀    ███    █▀     ▄████▀      ▄████▀   █████▄▄██   ██████████  ▄████████▀   ▀██████▀    ███           ▄████▀                                                                                                                         
+▄█████████▀    ███    █▀     ▄████▀      ▄████▀   █████▄▄██   ██████████  ▄████████▀   ▀██████▀    ███           ▄████▀   
         </pre>
     </header>
         
@@ -28,7 +27,7 @@
         malware: software that is specifically designed to disrupt, damage, or gain unauthorized access to a computer system.
     </p>
     <button class="start" id="startButton">START</button>
-    <p class="levelChoice" id="chooseDiff">Choose your difficulty:</p>
+    <p class="levelChoice" id="chooseDiff">Choose your difficulty:</p><br />
     <button class="levelChoice" id="levelOne">Easy</button>
     <button class="levelChoice" id="levelTwo">Normal</button>
     <button class="levelChoice" id="levelThree">Unbeatable</button>
@@ -121,12 +120,12 @@
             <button class="moveset" id="shield">Shield</button>
     </section>
     <div>USER CONSOLE</div>
-    _______________________________________________<br \>
+    _________________________<br \>
     <br \>
     Player Laser Clip: <div id="displayPlayerClip">0</div>
     Player Health: <div id="displayPlayerHealth">100</div>
     Player Shield Status <div id="displayPlayerShield">false</div>
-    _______________________________________________<br \>
+    _________________________<br \>
     <br \>
 
     Enemy Laser Clip: <div id="displayEnemyClip">0</div>

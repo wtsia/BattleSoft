@@ -59,6 +59,7 @@ class Ship {
             let updateNoAmmo = document.getElementById("encounter")
             updateNoAmmo.innerHTML += `No Ammo!` + `<br \>`;
             console.log("No ammo!");
+            updateUserConsole();
         }
     }
     attackPlayer() {
@@ -92,6 +93,7 @@ class Ship {
                 this.attackPlayer();
             } else {
             console.log("maximum clip");
+            updateUserConsole();
             }
         }
     }
@@ -316,6 +318,7 @@ document.getElementById("charge").addEventListener("click", function() {
     if (playerShip.laserClip == 3) {
         let updateMaxClip = document.getElementById("encounter")
         updateMaxClip.innerHTML += `Max Clip!` + `<br \>`;
+        updateUserConsole();
         return;
     }
     playerShip.chargeLaser()

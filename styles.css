@@ -18,6 +18,7 @@ body {
     color: lightgreen;
     border-color: lightgreen;
     display: none;
+    justify-content: center;
     font-family: 'Press Start 2P', cursive;
     margin: 20px;
     padding: 10px;
@@ -57,6 +58,12 @@ body {
 }
 .enemyShip {
     color: red;
+}
+.banner {
+    display: block;
+}
+#battleSoft {
+    text-align: center;
 }
 #reset {
     display: none;
