@@ -21,7 +21,7 @@ class Ship {
         if (playerShip.laserClip > 0 && playerShip.laserClip <= 3) {
 
         if (enemy.fightingType == "attacker") {
-            moveChoiceEnemyAttacker();
+            moveChoiceEnemyAttacker();               
             updateUserConsole();
         }
         if (enemy.fightingType == "defender") {

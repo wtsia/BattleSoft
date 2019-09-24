@@ -62,6 +62,12 @@ body {
 .banner {
     display: block;
 }
+#backgroundMusic {
+    opacity: 0.5;
+}
+#backgroundMusic:hover {
+    opacity: 0.8;
+}
 #battleSoft {
     text-align: center;
 }
