@@ -16,3 +16,5 @@ Charges laser and has 66% chance to fire laser. If player laser clip is 0 then e
 Charges laser then 66% chance to use shield and 33% chance to fire laser. If laser is empty or player laser clip is 0, enemy charges laser
 
 ASCII Art Generator courtesy of: http://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20
+
+**Deployment**:https://wtsia.github.io/ProjectOne/
