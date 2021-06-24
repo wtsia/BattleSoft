@@ -17,4 +17,4 @@ Charges laser then 66% chance to use shield and 33% chance to fire laser. If las
 
 ASCII Art Generator courtesy of: http://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20
 
-**Deployment**:https://wtsia.github.io/ProjectOne/
+**Deployment**: https://wtsia.github.io/BattleSoft-Game/
