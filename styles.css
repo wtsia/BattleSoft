@@ -109,18 +109,16 @@ body {
 }
 
 #loadingbar {
-    border-radius: 14px;
+    background-color: white;
     /* (height of inner div) / 2 + padding */
     padding: 3px;
 }
   
 #loadingbar>div {
     background-color: lightgreen;
-    width: 40%;
-    margin: 0 auto;
+    width: 40px;
     /* Adjust with JavaScript */
     height: 20px;
-    border-radius: 10px;
 }
 
 #loadingbarBorder {

@@ -1,8 +1,3 @@
-//GAME BEGIN
-document.getElementById("startButton").addEventListener("click", function() {
-    console.log("start button works!");
-})
-
 //MUSIC & SOUNDS
 backgroundMusic = document.getElementById("backgroundMusic");
 backgroundMusic.volume = 0.2;
@@ -17,49 +12,49 @@ class Ship {
         this.name = name;
         this.fightingType = fightingType;
         }
+
     attackEnemy() {
         if (playerShip.laserClip > 0 && playerShip.laserClip <= 3) {
+            if (enemy.fightingType == "attacker") {
+                moveChoiceEnemyAttacker();               
+                updateUserConsole();
+            }
+            if (enemy.fightingType == "defender") {
+                moveChoiceEnemyDefender();
+                updateUserConsole();
+            }
 
-        if (enemy.fightingType == "attacker") {
-            moveChoiceEnemyAttacker();               
-            updateUserConsole();
-        }
-        if (enemy.fightingType == "defender") {
-            moveChoiceEnemyDefender();
-            updateUserConsole();
-        }
+            if (enemy.shield == `off`) {
+                enemy.health = enemy.health - this.laserDamage;
 
-        if (enemy.shield == `off`) {
-            enemy.health = enemy.health - this.laserDamage;
+                //display action
+                let action = document.getElementById("encounter");
 
-            //display action
-            let action = document.getElementById("encounter");
+                action.innerHTML += `Player has attacked the enemy (health: ${enemy.health})` + `<br \>`;
+                console.log("Player has attacked the enemy!")
+                console.log("Enemy health is now " + enemy.health);
+                
+                //Play laser shot sound
+                let laserSound = new Audio("audio/pew.wav");
 
-            action.innerHTML += `Player has attacked the enemy (health: ${enemy.health})` + `<br \>`;
-            console.log("Player has attacked the enemy!")
-            console.log("Enemy health is now " + enemy.health);
-            
-            //Play laser shot sound
-            let laserSound = new Audio("audio/pew.wav");
+                laserSound.play();
+                this.laserClip--;
+                updateUserConsole();
+                checkWinorLoss();
+                console.log("total rounds are " + totalRounds);
+            }
+            if (enemy.shield == `on`) {
+                console.log("Enemy shield state is " + enemy.shield);
+                console.log("Enemy shield deflected shot");
+                this.laserClip--;
+                updateUserConsole();
+                checkWinorLoss();
 
-            laserSound.play();
-            this.laserClip--;
-            updateUserConsole();
-            checkWinorLoss();
-            console.log("total rounds are " + totalRounds);
-        }
-        if (enemy.shield == `on`) {
-            console.log("Enemy shield state is " + enemy.shield);
-            console.log("Enemy shield deflected shot");
-            this.laserClip--;
-            updateUserConsole();
-            checkWinorLoss();
-            
-            let laserSound = new Audio("audio/pew.wav");
+                let laserSound = new Audio("audio/pew.wav");
 
-            laserSound.play();
-            disableShields();
-        }
+                laserSound.play();
+                disableShields();
+            }
         } else {
             let updateNoAmmo = document.getElementById("encounter")
             updateNoAmmo.innerHTML += `No Ammo!` + `<br \>`;
@@ -67,11 +62,12 @@ class Ship {
             updateUserConsole();
         }
     }
+
     attackPlayer() {
         console.log("Enemy has attacked Player!");
         if (playerShip.shield == `off`) {
-            playerShip.health = playerShip.health - this.laserDamage;
             let action = document.getElementById("encounter");
+            playerShip.health = playerShip.health - this.laserDamage;
             action.innerHTML += `Player has been attacked (health: ${playerShip.health})` + `<br \>`;
             console.log("Player health is now " + playerShip.health);
         } else {
@@ -83,12 +79,13 @@ class Ship {
         updateUserConsole();
         addRound();
     }
+
     chargeLaser() {
         if (this.laserClip == 0 || this.laserClip < 3) {
+            let action = document.getElementById("encounter");
             this.laserClip++;
             console.log(this.name + " has loaded ammo");
             console.log(this.name + " has " + this.laserClip + " shots");
-            let action = document.getElementById("encounter");
             action.innerHTML += `${this.name} has loaded ammo` + `<br \>`;
             updateUserConsole();
             addRound();
@@ -102,9 +99,10 @@ class Ship {
             }
         }
     }
+
     activateShield() {
-        this.shield = `on`;
         let action = document.getElementById("encounter");
+        this.shield = `on`;
         action.innerHTML += `${this.name} has activated shield!` + `<br \>`;
         console.log(this.name + " shield is now " + this.shield);
         updateUserConsole();
