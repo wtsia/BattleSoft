@@ -31,13 +31,17 @@ class Ship {
 
         if (enemy.shield == `off`) {
             enemy.health = enemy.health - this.laserDamage;
+
             //display action
             let action = document.getElementById("encounter");
+
             action.innerHTML += `Player has attacked the enemy (health: ${enemy.health})` + `<br \>`;
             console.log("Player has attacked the enemy!")
             console.log("Enemy health is now " + enemy.health);
+            
             //Play laser shot sound
-            let laserSound = new Audio("pew.wav");
+            let laserSound = new Audio("audio/pew.wav");
+
             laserSound.play();
             this.laserClip--;
             updateUserConsole();
@@ -50,9 +54,10 @@ class Ship {
             this.laserClip--;
             updateUserConsole();
             checkWinorLoss();
-            let laserSound = new Audio("pew.wav");
-            laserSound.play();
+            
+            let laserSound = new Audio("audio/pew.wav");
 
+            laserSound.play();
             disableShields();
         }
         } else {
@@ -106,7 +111,7 @@ class Ship {
     }
 }
 
-//FUNCTIONS
+// GLOBAL FUNCTIONS
 function generateNewEnemy() {
     alienName = ["TrojanHorse", "Adware", "Spyware", "Rootkit"];
     fightingType = ["attacker", "defender"];
@@ -154,6 +159,21 @@ function playerHealthCheck() {
     if (playerShip.health <= 0) {
         document.getElementById("playerShipOld").style.display = "none";
         document.getElementById("playerShipDestroyed").style.display = "inline-block";
+    }
+}
+
+// move progress bar
+function move() {
+    let elem = document.getElementById("loadingbar");   
+    let width = 1;
+    let id = setInterval(frame, 10);
+    function frame() {
+        if (width >= 100) {
+        clearInterval(id);
+        } else {
+        width++; 
+        elem.style.width = width + '%'; 
+        }
     }
 }
 
@@ -219,12 +239,16 @@ function changeDisplay(string) {
         document.getElementById(`reset`).style.display = `inline-block`;
     }
 }
+
 //Start button to level choice
-document.getElementById(`startButton`).addEventListener(`click`, 
+document.getElementById(`startButton`).addEventListener(`click`,
     function() {
         let string = `start`;
         changeDisplay(string);
+        move();
 });
+
+
 //level choice to game
 document.getElementById(`levelOne`).addEventListener(`click`, 
 function() {

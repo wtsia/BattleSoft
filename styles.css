@@ -10,6 +10,7 @@ body {
     flex: row;
     width: 100vw;
 }
+
 .userInterface {
     line-height: 25px;
 }
@@ -106,6 +107,26 @@ body {
     margin-left: auto;
     margin-right: auto;
 }
+
+#loadingbar {
+    border-radius: 14px;
+    /* (height of inner div) / 2 + padding */
+    padding: 3px;
+}
+  
+#loadingbar>div {
+    background-color: lightgreen;
+    width: 40%;
+    margin: 0 auto;
+    /* Adjust with JavaScript */
+    height: 20px;
+    border-radius: 10px;
+}
+
+#loadingbarBorder {
+    padding: 5px;
+}
+
 #playerShipNew {
     display: inline-block;
 }
