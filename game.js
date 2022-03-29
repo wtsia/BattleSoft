@@ -164,7 +164,7 @@ function playerHealthCheck() {
 function move() {
     let elem = document.getElementById("loadingbar");   
     let width = 1;
-    let id = setInterval(frame, 10);
+    let id = setInterval(frame, 100);
     function frame() {
         if (width >= 100) {
         clearInterval(id);

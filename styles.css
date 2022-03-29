@@ -107,14 +107,8 @@ body {
     margin-left: auto;
     margin-right: auto;
 }
-
-#loadingbar {
-    background-color: white;
-    /* (height of inner div) / 2 + padding */
-    padding: 3px;
-}
   
-#loadingbar>div {
+#loadingbar {
     background-color: lightgreen;
     width: 40px;
     /* Adjust with JavaScript */
@@ -122,7 +116,8 @@ body {
 }
 
 #loadingbarBorder {
-    padding: 5px;
+    border: 5px lightgreen;
+    width: 400px;
 }
 
 #playerShipNew {
