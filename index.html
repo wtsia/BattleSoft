@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
     <title>BattleSoft</title>
 </head>
+
 <body>
     <header class="banner">
         <pre id="battleSoft">
@@ -26,6 +27,12 @@
         Malware has been detected! It is up to you to defend your Hard Drive from these malicious invaders! <br \><br \>
         malware: software that is specifically designed to disrupt, damage, or gain unauthorized access to a computer system.
     </p>
+
+    <div id="loadingbarBorder">
+        <p id="loadingtext">Loading...</p><br />
+        <div id="loadingbar"></div>
+    </div>
+
     <button class="start" id="startButton">START</button>
     <p class="levelChoice" id="chooseDiff">Choose your difficulty:</p><br />
     <button class="levelChoice" id="levelOne">Easy</button>
@@ -138,7 +145,7 @@
 <button id="reset">RESET</button>
 
 <br \>
-<audio id="backgroundMusic" controls="controls" display="flex"><source src="8bitSpaceGroove.mp3" type="audio/mpeg">8 Bit Space Groove by HeatleyBros</audio>
+<audio id="backgroundMusic" controls="controls" display="flex"><source src="audio/8bitSpaceGroove.mp3" type="audio/mpeg">8 Bit Space Groove by HeatleyBros</audio>
     <script src="game.js"></script>
 </body>
 </html>
