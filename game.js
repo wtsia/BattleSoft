@@ -110,6 +110,12 @@ class Ship {
 }
 
 // GLOBAL FUNCTIONS
+async function delay() {
+    console.log('start timer');
+    await delay(1000);
+    console.log('after 1 second');
+}
+
 function generateNewEnemy() {
     alienName = ["TrojanHorse", "Adware", "Spyware", "Rootkit"];
     fightingType = ["attacker", "defender"];
@@ -157,21 +163,6 @@ function playerHealthCheck() {
     if (playerShip.health <= 0) {
         document.getElementById("playerShipOld").style.display = "none";
         document.getElementById("playerShipDestroyed").style.display = "inline-block";
-    }
-}
-
-// move progress bar
-function move() {
-    let elem = document.getElementById("loadingbar");   
-    let width = 1;
-    let id = setInterval(frame, 100);
-    function frame() {
-        if (width >= 100) {
-        clearInterval(id);
-        } else {
-        width++; 
-        elem.style.width = width + '%'; 
-        }
     }
 }
 
@@ -227,6 +218,13 @@ function changeDisplay(string) {
         element[i].style.display = `none`;
     }
     if (string == 'start') {
+        document.getElementById('loadingtext').style.display = 'inline-block';
+        document.getElementById('loadingbar').style.display = 'inline-block';
+        move();
+    }
+    if (string == 'loadingbar') {
+        document.getElementById('loadingtext').style.display = 'none';
+        document.getElementById('loadingbar').style.display = `none`;
         document.getElementById('chooseDiff').style.display = `inline-block`;
         document.getElementById(`levelOne`).style.display = `inline-block`;
         document.getElementById(`levelTwo`).style.display = `inline-block`;
@@ -236,9 +234,12 @@ function changeDisplay(string) {
         document.getElementById(`game`).style.display = `inline-block`;
         document.getElementById(`reset`).style.display = `inline-block`;
     }
+    if (sting == 'loadingbar') {
+        document.getElementById('loadingbar').style.display = 'inline-block';
+    }
 }
 
-//Start button to level choice
+//Start button to loadingbar
 document.getElementById(`startButton`).addEventListener(`click`,
     function() {
         let string = `start`;
@@ -246,6 +247,22 @@ document.getElementById(`startButton`).addEventListener(`click`,
         move();
 });
 
+// move loadingbar
+function move() {
+    let elem = document.getElementById("loadingbar");   
+    let width = 1;
+    let id = setInterval(frame, 20);
+    function frame() {
+        if (width >= 100) {
+        clearInterval(id);
+        let string = 'loadingbar';
+        changeDisplay(string);
+        } else {
+        width++; 
+        elem.style.width = width + '%'; 
+        }
+    }
+}
 
 //level choice to game
 document.getElementById(`levelOne`).addEventListener(`click`, 
@@ -289,7 +306,7 @@ function updateUserConsole() {
     document.getElementById(`displayEnemyClip`).innerHTML = enemy.laserClip;
     document.getElementById(`displayEnemyHealth`).innerHTML = enemy.health;
     document.getElementById(`displayEnemyShield`).innerHTML = enemy.shield;
-    var objDiv = document.getElementById("encounter");
+    let objDiv = document.getElementById("encounter");
     objDiv.scrollTop = objDiv.scrollHeight;
 }
 
