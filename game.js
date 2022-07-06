@@ -1,8 +1,8 @@
-//MUSIC & SOUNDS
-backgroundMusic = document.getElementById("backgroundMusic");
+// MUSIC & SOUNDS
+let backgroundMusic = document.getElementById("backgroundMusic");
 backgroundMusic.volume = 0.2;
 
-//SHIP CLASS DECLARATION
+// SHIP CLASS DECLARATION
 class Ship {
     constructor(health, laserClip = 0, laserDamage, shield = `off`, name, fightingType="fighter") {
         this.health = health;
@@ -166,7 +166,7 @@ function playerHealthCheck() {
     }
 }
 
-//Enemy Attacker
+// Function for Enemy Attacker
 function moveChoiceEnemyAttacker() {
     let choice = Math.random();
     if (playerShip.laserClip == 0 && enemy.laserClip < 3) {
@@ -189,7 +189,7 @@ function moveChoiceEnemyAttacker() {
     }
 }
 
-//Enemy Defender
+// Function for Enemy Defender
 function moveChoiceEnemyDefender() {
     let choice = Math.random();
     if (playerShip.laserClip == 0) {
@@ -205,13 +205,13 @@ function moveChoiceEnemyDefender() {
     }
 }
 
-//Disable shields after each turn
+// Disable shields after each turn
 function disableShields() {
     playerShip.shield = `off`;
     enemy.shield = `off`;
 }
 
-//Game Display
+// Game display
 function changeDisplay(string) {
     let element = document.getElementsByClassName(string)
     for(i=0; i<element.length; i++) {
@@ -239,7 +239,7 @@ function changeDisplay(string) {
     }
 }
 
-//Start button to loadingbar
+// Start button to loadingbar
 document.getElementById(`startButton`).addEventListener(`click`,
     function() {
         let string = `start`;
@@ -247,7 +247,7 @@ document.getElementById(`startButton`).addEventListener(`click`,
         move();
 });
 
-// move loadingbar
+// Move loadingbar
 function move() {
     let elem = document.getElementById("loadingbar");   
     let width = 1;
@@ -264,7 +264,7 @@ function move() {
     }
 }
 
-//level choice to game
+// LEVEL CHOICE: Takes the choice of level to the actual game
 document.getElementById(`levelOne`).addEventListener(`click`, 
 function() {
     let string = `levelChoice`;
@@ -290,7 +290,7 @@ function() {
     changeDisplay(string);
 });
 
-//DECLARE SHIPS
+// DECLARE SHIPS
 let playerShip = new Ship (100, 0, 20, `off`, "Player")
 let playerMaxHealth = playerShip.health;
 console.log(playerShip);
@@ -298,7 +298,7 @@ generateNewEnemy();
 let enemyMaxHealth = enemy.health;
 console.log(enemy);
 
-//DISPLAY UI
+// DISPLAY USER CONSOLE
 function updateUserConsole() {
     document.getElementById(`displayPlayerClip`).innerHTML = playerShip.laserClip;
     document.getElementById(`displayPlayerHealth`).innerHTML = playerShip.health;
@@ -310,7 +310,7 @@ function updateUserConsole() {
     objDiv.scrollTop = objDiv.scrollHeight;
 }
 
-//TURN COUNTER
+// TURN COUNTER
 let totalRounds = 0;
 function addRound() {
     checkWinorLoss();
@@ -320,7 +320,7 @@ function addRound() {
     disableShields();
 }
 
-//WIN STAGE
+// WIN STAGE
 function winStage() {
     document.getElementById("game").style.display = `none`;
     document.getElementById("winGame").style.display = `inline-block`;
@@ -347,7 +347,7 @@ function checkWinorLoss() {
     }
 }
 
-//USER INPUT
+// USER INPUT FOR FIRING
 document.getElementById("fire").addEventListener("click",
 function() {
     playerShip.attackEnemy();

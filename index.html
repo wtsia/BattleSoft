@@ -43,111 +43,110 @@
 
     <p id="endGame">Anti-Malware compromised. Hard Drive is corrupted!<br \></p>
     <p id="winGame">You've removed all malware. You are safe!<br \></p>
-<section id="game">
-    <div id="visualConsole">
-        <section class="playerShip">
-            <pre id="playerShipNew">
-                    |=======>
+    <section id="game">
+        <div id="visualConsole">
+            <section class="playerShip">
+                <pre id="playerShipNew">
                         |=======>
-                        \   \
-                        -----------------\
-                    |                [ >
-                        -----------------/
-                        /   /
+                            |=======>
+                            \   \
+                            -----------------\
+                        |                [ >
+                            -----------------/
+                            /   /
+                            |=======>
                         |=======>
-                    |=======>
-            </pre>
-            <pre id="playerShipMid">
-                    =====
+                </pre>
+                <pre id="playerShipMid">
+                        =====
+                            |=======>
+                            \   \
+                            -----------------\
+                        |                [ >
+                            -----------------/
+                            /   /
+                            |=======>
                         |=======>
-                        \   \
-                        -----------------\
-                    |                [ >
-                        -----------------/
-                        /   /
-                        |=======>
-                    |=======>
-            </pre>
-            <pre id="playerShipOld">
-                    ====
-                        |=======>
-                        \   \
-                        --------   ------\
-                    |                [ >
-                        -----------------/
-                        /   /
-                        |=======>
-                    |======
-            </pre>
-            <pre id="playerShipDestroyed">
-                    
-                        |    ==>
-                        \   \
-                        -------   -------\
-                    |           
-                        -----  ----   ---/
-                        /   /
-                        |=======>
-            </pre>
-        </section>
-        <section class="enemyShip">
-            <pre id ="enemyShipNew">
-                /-           ,,,,,,,
-                /   \        /
-                |    ========---------
-                \   /        \
-                \-           ```````
-            </pre>
-            <pre id ="enemyShipMid">
-                /-           
-                /   \        /
-                |    ========---------
-                \   /        \
-                \-           ````
-            </pre>
-            <pre id ="enemyShipOld">
-                /-           
-                    \        /
-                |    ========----
-                \   /        \
-                \-           
-            </pre>
-            <pre id ="enemyShipDestroyed">
-                /-           
-                    \        /
-                    ========
-                    /        \
-                \-           
-            </pre>
-        </section>
-    </div>
-    <div id="encounter"></div> 
-    <section class="userInterface">
-        <section>
-                <button class="moveset" id="fire">Fire</button>
-                <button class="moveset" id="charge">Charge</button>
-                <button class="moveset" id="shield">Shield</button>
-        </section>
-        <div>USER CONSOLE</div>
-        _________________________<br \>
-        <br \>
-        Player Laser Clip: <div id="displayPlayerClip">0</div>
-        Player Health: <div id="displayPlayerHealth">100</div>
-        Player Shield Status <div id="displayPlayerShield">false</div>
-        _________________________<br \>
-        <br \>
+                </pre>
+                <pre id="playerShipOld">
+                        ====
+                            |=======>
+                            \   \
+                            --------   ------\
+                        |                [ >
+                            -----------------/
+                            /   /
+                            |=======>
+                        |======
+                </pre>
+                <pre id="playerShipDestroyed">
+                        
+                            |    ==>
+                            \   \
+                            -------   -------\
+                        |           
+                            -----  ----   ---/
+                            /   /
+                            |=======>
+                </pre>
+            </section>
+            <section class="enemyShip">
+                <pre id ="enemyShipNew">
+                    /-           ,,,,,,,
+                    /   \        /
+                    |    ========---------
+                    \   /        \
+                    \-           ```````
+                </pre>
+                <pre id ="enemyShipMid">
+                    /-           
+                    /   \        /
+                    |    ========---------
+                    \   /        \
+                    \-           ````
+                </pre>
+                <pre id ="enemyShipOld">
+                    /-           
+                        \        /
+                    |    ========----
+                    \   /        \
+                    \-           
+                </pre>
+                <pre id ="enemyShipDestroyed">
+                    /-           
+                        \        /
+                        ========
+                        /        \
+                    \-           
+                </pre>
+            </section>
+        </div>
+        <div id="encounter"></div> 
+        <section class="userInterface">
+            <section>
+                    <button class="moveset" id="fire">Fire</button>
+                    <button class="moveset" id="charge">Charge</button>
+                    <button class="moveset" id="shield">Shield</button>
+            </section>
+            <div>USER CONSOLE</div>
+            _________________________<br \>
+            <br \>
+            Player Laser Clip: <div id="displayPlayerClip">0</div>
+            Player Health: <div id="displayPlayerHealth">100</div>
+            Player Shield Status <div id="displayPlayerShield">false</div>
+            _________________________<br \>
+            <br \>
 
-        Enemy Laser Clip: <div id="displayEnemyClip">0</div>
-        Enemy Health: <div id="displayEnemyHealth">100</div>
-        Enemy Shield Status: <div id="displayEnemyShield">false</div>
-        <br \>
-        <br \>
+            Enemy Laser Clip: <div id="displayEnemyClip">0</div>
+            Enemy Health: <div id="displayEnemyHealth">100</div>
+            Enemy Shield Status: <div id="displayEnemyShield">false</div>
+            <br \>
+            <br \>
+        </section>
     </section>
-</section>
-<button id="reset">RESET</button>
+    <button id="reset">RESET</button>
 
-<br \>
-<audio id="backgroundMusic" controls="controls" display="flex"><source src="audio/8bitSpaceGroove.mp3" type="audio/mpeg">8 Bit Space Groove by HeatleyBros</audio>
+    <audio id="backgroundMusic" src="audio/8bitSpaceGroove.mp3" loop autoplay height="0"></audio>
     <script src="game.js"></script>
 </body>
 </html>

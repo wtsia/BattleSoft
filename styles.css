@@ -63,10 +63,6 @@ body {
 .banner {
     display: block;
 }
-.visualConsole {
-    display: inline-block;
-    color: white;
-}
 #backgroundMusic {
     opacity: 0.5;
 }
