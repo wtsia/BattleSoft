@@ -1,4 +1,4 @@
-## **Deployment**: https://wtsia.github.io/BattleSoft-Game/
+## **Deployment**: https://wtsia.github.io/BattleSoft/
 
 ### Mechanics
 **Ship Class**:
